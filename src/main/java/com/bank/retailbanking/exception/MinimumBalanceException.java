@@ -1,9 +1,9 @@
 package com.bank.retailbanking.exception;
 
-public class CustomerNotFoundException extends Exception {
+public class MinimumBalanceException extends Exception {
 	private static final long serialVersionUID = 1L;
 
-	public CustomerNotFoundException(String exception) {
+	public MinimumBalanceException(String exception) {
 		super(exception);
 	}
 }

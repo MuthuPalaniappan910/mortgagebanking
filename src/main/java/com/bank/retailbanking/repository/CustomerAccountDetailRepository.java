@@ -12,12 +12,11 @@ import com.bank.retailbanking.entity.Customer;
 import com.bank.retailbanking.entity.CustomerAccountDetail;
 
 @Repository
-public interface CustomerAccountDetailRepository extends JpaRepository<CustomerAccountDetail, Long>  {
-	
+public interface CustomerAccountDetailRepository extends JpaRepository<CustomerAccountDetail, Long> {
+
 	Optional<CustomerAccountDetail> findByCustomerId(Customer customer);
 
 	Optional<CustomerAccountDetail> findByAccountNumber(Long accountNumber);
-
 
 	@Query("select u from CustomerAccountDetail u WHERE CAST(u.accountNumber AS string) LIKE %:accountNumber%")
 	List<CustomerAccountDetail> findAllByAccountNumber(@Param("accountNumber") String accountNumber);
@@ -29,6 +28,15 @@ public interface CustomerAccountDetailRepository extends JpaRepository<CustomerA
 	Optional<CustomerAccountDetail> findByCustomerIdAndAccountType(CustomerAccountDetail customerAccountDetail,
 			String savingAccount);
 
-
 	List<CustomerAccountDetail> findAllByCustomerId(Customer customer);
+
+	Optional<CustomerAccountDetail> findByAccountNumberAndAccountType(Long debitedAccount,
+			String SAVINGSACCOUNT_MESSAGE);
+
+	Optional<CustomerAccountDetail> findByCustomerIdAndAccountTypeAndAccountNumber(Customer customer,
+			String mORTGAGE_MESSAGE, Long creditedAccount);
+
+	Optional<CustomerAccountDetail> findByAccountTypeAndAccountNumber(String SAVINGSACCOUNT_MESSAGE,
+			Long creditedAccount);
+
 }

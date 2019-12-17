@@ -9,8 +9,26 @@ import org.springframework.web.bind.annotation.RestController;
 @ControllerAdvice
 @RestController
 public class GlobalExceptionHandler {
-	@ExceptionHandler(value = CustomerNotFoundException.class)
-	public ResponseEntity<ErrorResponse> handleException(CustomerNotFoundException exception) {
+	@ExceptionHandler(value = DebitAccountNotFoundException.class)
+	public ResponseEntity<ErrorResponse> handleException(DebitAccountNotFoundException exception) {
+		ErrorResponse errorResponse = new ErrorResponse(exception.getMessage());
+		return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
+	}
+	
+	@ExceptionHandler(value = SameAccountNumberException.class)
+	public ResponseEntity<ErrorResponse> handleException(SameAccountNumberException exception) {
+		ErrorResponse errorResponse = new ErrorResponse(exception.getMessage());
+		return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
+	}
+
+	@ExceptionHandler(value = CreditAccountNotFoundException.class)
+	public ResponseEntity<ErrorResponse> handleException(CreditAccountNotFoundException exception) {
+		ErrorResponse errorResponse = new ErrorResponse(exception.getMessage());
+		return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
+	}
+
+	@ExceptionHandler(value = MinimumBalanceException.class)
+	public ResponseEntity<ErrorResponse> handleException(MinimumBalanceException exception) {
 		ErrorResponse errorResponse = new ErrorResponse(exception.getMessage());
 		return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
 	}
@@ -20,29 +38,11 @@ public class GlobalExceptionHandler {
 		ErrorResponse errorResponse = new ErrorResponse(exception.getMessage());
 		return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
 	}
-
-	@ExceptionHandler(value = SameAccountNumberException.class)
-	public ResponseEntity<ErrorResponse> handleException(SameAccountNumberException exception) {
-		ErrorResponse errorResponse = new ErrorResponse(exception.getMessage());
-		return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
-	}
-
-	@ExceptionHandler(value = AgeException.class)
-	public ResponseEntity<ErrorResponse> handleException(AgeException exception) {
-		ErrorResponse errorResponse = new ErrorResponse(exception.getMessage());
-		return new ResponseEntity<>(errorResponse, HttpStatus.NOT_ACCEPTABLE);
-	}
-
-	@ExceptionHandler(value = InvalidRegistrationException.class)
-	public ResponseEntity<ErrorResponse> handleException(InvalidRegistrationException exception) {
-		ErrorResponse errorResponse = new ErrorResponse(exception.getMessage());
-		return new ResponseEntity<>(errorResponse, HttpStatus.NOT_ACCEPTABLE);
-	}
 	
 	@ExceptionHandler(value = GeneralException.class)
-	public ResponseEntity<ErrorResponse> userException(Exception exception){
+	public ResponseEntity<ErrorResponse> handleException(GeneralException exception) {
 		ErrorResponse errorResponse = new ErrorResponse(exception.getMessage());
-		return new ResponseEntity<>(errorResponse, HttpStatus.NOT_ACCEPTABLE);	
+		return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
 	}
 	
 	@ExceptionHandler(value = NoAccountListException.class)
@@ -50,12 +50,5 @@ public class GlobalExceptionHandler {
 		ErrorResponse errorResponse = new ErrorResponse(exception.getMessage());
 		return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
 	}
-	
-	@ExceptionHandler(value = MortgageException.class)
-	public ResponseEntity<ErrorResponse> handleException(MortgageException exception) {
-		ErrorResponse errorResponse = new ErrorResponse(exception.getMessage());
-		return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
-	}
-
 
 }

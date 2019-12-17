@@ -46,14 +46,6 @@ public class CustomerAccountServiceImpl implements CustomerAccountService {
 
 			CustomerAccountDetail customerAccountDetail = new CustomerAccountDetail();
 			customerAccountDetail.setAccountOpeningDate(LocalDate.now());
-			/*
-			 * customerAccountDetail.setAvailableBalance(-(customerProperty.get().
-			 * getPropertyValue()*20/100));
-			 * customerAccountDetail.setAccountType(customerRequestDto.getAccountType());
-			 * customerAccountDetail.setCustomerId(customer.get());
-			 * customerAccountDetail.setPassword(customerAccoundDetailsSavingResponse.get().
-			 * getPassword());
-			 */
 			customerAccountDetail.setAccountType("mortgage");
 			customerAccountDetail.setAvailableBalance(customerRequestDto.getLoanAmount());
 			customerAccountDetail.setCustomerId(customer.get());
