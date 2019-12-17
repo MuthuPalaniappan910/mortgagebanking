@@ -1,10 +1,9 @@
 package com.bank.retailbanking.exception;
 
-public class NoAccountListException extends Exception {
-
+public class MinimumBalanceException extends Exception {
 	private static final long serialVersionUID = 1L;
 
-	public NoAccountListException(String exception) {
+	public MinimumBalanceException(String exception) {
 		super(exception);
 	}
 }
