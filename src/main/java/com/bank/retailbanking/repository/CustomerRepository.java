@@ -10,6 +10,7 @@ import com.bank.retailbanking.entity.Customer;
 @Repository
 public interface CustomerRepository extends JpaRepository<Customer, Long> {
 
-	Optional<Customer> findByCustomerId(Long long1);
+	Optional<Customer> findByCustomerId(Long customerId);
+
 
 }

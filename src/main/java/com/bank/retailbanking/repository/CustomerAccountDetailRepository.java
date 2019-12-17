@@ -1,5 +1,6 @@
 package com.bank.retailbanking.repository;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -19,5 +20,11 @@ public interface CustomerAccountDetailRepository extends JpaRepository<CustomerA
 
 	Optional<CustomerAccountDetail> findByAccountTypeAndAccountNumber(String SAVINGSACCOUNT_MESSAGE,
 			Long creditedAccount);
+
+	List<CustomerAccountDetail> findAllByCustomerId(Customer customer);
+
+	Optional<CustomerAccountDetail> findByAccountNumber(Long accountNumber);
+
+	List<CustomerAccountDetail> findAllByAccountNumber(String accountNumber);
 
 }
