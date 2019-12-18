@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.bank.retailbanking.entity.Customer;
@@ -11,6 +13,18 @@ import com.bank.retailbanking.entity.CustomerAccountDetail;
 
 @Repository
 public interface CustomerAccountDetailRepository extends JpaRepository<CustomerAccountDetail, Long> {
+
+	Optional<CustomerAccountDetail> findByCustomerId(Customer customer);
+
+	@Query("select u from CustomerAccountDetail u WHERE CAST(u.accountNumber AS string) LIKE %:accountNumber%")
+	List<CustomerAccountDetail> findAllByAccountNumber(@Param("accountNumber") String accountNumber);
+
+	Optional<CustomerAccountDetail> findByCustomerIdAndAccountType(Optional<Customer> customer, String string);
+
+	Optional<CustomerAccountDetail> findByCustomerIdAndAccountType(Customer customer, String transactionPurpose);
+
+	Optional<CustomerAccountDetail> findByCustomerIdAndAccountType(CustomerAccountDetail customerAccountDetail,
+			String savingAccount);
 
 	Optional<CustomerAccountDetail> findByAccountNumberAndAccountType(Long debitedAccount,
 			String SAVINGSACCOUNT_MESSAGE);
@@ -21,12 +35,13 @@ public interface CustomerAccountDetailRepository extends JpaRepository<CustomerA
 	Optional<CustomerAccountDetail> findByAccountTypeAndAccountNumber(String SAVINGSACCOUNT_MESSAGE,
 			Long creditedAccount);
 
+
 	List<CustomerAccountDetail> findAllByCustomerId(Customer customer);
 
-	List<CustomerAccountDetail> findAllByAccountNumber(String accountNumber);
 
 	Optional<CustomerAccountDetail> findByAccountNumberAndAccountTypeNot(Long creditedAccount, String MORTGAGE_MESSAGE);
 
 	Optional<CustomerAccountDetail> findByAccountNumber(Long accountNumber);
+
 
 }
