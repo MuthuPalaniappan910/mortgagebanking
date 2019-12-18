@@ -20,6 +20,7 @@ public class ApplicationConstants {
 	public static final String MORTGAGE_SUCCESS_STATUS_MESSAGE = "login successful your login credentials are sent to your gmail";
 	public static final String MORTGAGE_FAILURE_STATUS_MESSAGE = "please enter current details";
 	public static final Integer MORTGAGE_FAILURE_STATUS_CODE = 404;
+	public static final String BENEFICIARY_ADDED_SUCCESSFULLY = "Beneficiary details saved successfully";
 	private ApplicationConstants() {
 
 	}
@@ -28,6 +29,8 @@ public class ApplicationConstants {
 	public static final Integer LIST_FAILURE_CODE = 404;
 
 	public static final Integer SUCCESS_CODE = 200;
+	public static final String LOGIN_ERROR = "Invalid customer credentials, Please try with valid Customer Id and Password";
+	public static final String LOGIN_SUCCESS = "Login Success";
 
 	public static final String ACCOUNT_LIST_FAILURE_MESSAGE = "There are no account details as you entered";
 
