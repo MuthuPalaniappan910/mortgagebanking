@@ -23,8 +23,10 @@ public interface CustomerAccountDetailRepository extends JpaRepository<CustomerA
 
 	List<CustomerAccountDetail> findAllByCustomerId(Customer customer);
 
-	Optional<CustomerAccountDetail> findByAccountNumber(Long accountNumber);
-
 	List<CustomerAccountDetail> findAllByAccountNumber(String accountNumber);
+
+	Optional<CustomerAccountDetail> findByAccountNumberAndAccountTypeNot(Long creditedAccount, String MORTGAGE_MESSAGE);
+
+	Optional<CustomerAccountDetail> findByAccountNumber(Long accountNumber);
 
 }
