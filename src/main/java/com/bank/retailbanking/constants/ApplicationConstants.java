@@ -32,9 +32,11 @@ public class ApplicationConstants {
 	public static final String LOGIN_ERROR = "Invalid customer credentials, Please try with valid Customer Id and Password";
 	public static final String LOGIN_SUCCESS = "Login Success";
 
-	public static final String ACCOUNT_LIST_FAILURE_MESSAGE = "There are no account details as you entered";
+	public static final String ACCOUNT_LIST_FAILURE_MESSAGE = "No matching accounts found";
 
-	public static final String SAVING_ACCOUNT = "savings";
+	public static final String SAVING_ACCOUNT = "Savings";
+	public static final String MORTGAGE_ACCOUNT="Mortgage";
+	public static final Long TRANSACTION_HISTORY_COUNT = 5L;
 
 	public static Integer FUNDTRANSFER_SUCCESSCODE = 200;
 	public static String FUNDTRANSFER_SUCCESSMESSAGE = "Your fund is transferred successfully";
@@ -44,7 +46,7 @@ public class ApplicationConstants {
 	public static String DEBITACCOUNT_NOTFOUND = "There is no debit account found";
 	public static String CREDITACCOUNT_NOTFOUND = "There is no credit account found";
 
-	public static Double MINIMUMBALANCE = 2000.00;
+	public static Double MINIMUMBALANCE = 3000.00;
 	public static String AMOUNT_AVAILABLEBALANCE = "Sorry!!!Your transaction amount is more than your available balance";
 
 	public static String SAMEACCOUNT_MESSAGE = "You will not be able to transfer to your account itself";
@@ -53,4 +55,7 @@ public class ApplicationConstants {
 	public static String SUCCESS = "Success";
 	public static String DEBIT = "Debit";
 	public static String CREDIT = "Credit";
+	
+	public static String SUCCESSFULLY_DEBITED = "Successfully received from ";
+	public static String SUCCESSFULLY_CREDITED = "Successfully credited to ";
 }

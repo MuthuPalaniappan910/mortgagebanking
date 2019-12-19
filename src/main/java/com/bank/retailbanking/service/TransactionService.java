@@ -3,6 +3,7 @@ package com.bank.retailbanking.service;
 import java.util.Optional;
 
 import com.bank.retailbanking.dto.MortgageAccountSummaryResponsedto;
+import com.bank.retailbanking.dto.TransactionResponsedto;
 import com.bank.retailbanking.exception.GeneralException;
 import com.bank.retailbanking.dto.FundTransferRequestDto;
 import com.bank.retailbanking.dto.FundTransferResponseDto;
@@ -19,4 +20,8 @@ public interface TransactionService {
 	Optional<FundTransferResponseDto> fundTransfer(FundTransferRequestDto fundTransferRequestDto)
 			throws DebitAccountNotFoundException, AmountInvalidException, MinimumBalanceException,
 			CreditAccountNotFoundException, SameAccountNumberException;
+
+
+	TransactionResponsedto getTransactionSummary(Long customerId) throws GeneralException;
+
 }

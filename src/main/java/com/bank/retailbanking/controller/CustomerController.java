@@ -1,8 +1,6 @@
 package com.bank.retailbanking.controller;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
@@ -18,14 +16,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
-import com.bank.retailbanking.dto.CustomerFavouriteAccountResponse;
 import com.bank.retailbanking.dto.FavouriteBeneficiariesResponseDto;
 import com.bank.retailbanking.exception.CustomerAccountNotFoundException;
 import com.bank.retailbanking.service.CustomerService;
 
-import antlr.collections.List;
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * This class is used to perform the customer related operations
+ **/
 @RequestMapping("/customers")
 @RestController
 @CrossOrigin(allowedHeaders = { "*", "*/" }, origins = { "*", "*/" })
@@ -34,10 +33,18 @@ public class CustomerController {
 	@Autowired
 	CustomerService customerService;
 
+	/**
+	 * @author Muthu
+	 * @author Chethana
+	 * @param customerId
+	 * @return FavouriteBeneficiariesResponseDto
+	 * @throws CustomerAccountNotFoundException
+	 */
 	@GetMapping("/{customerId}")
-	public ResponseEntity<FavouriteBeneficiariesResponseDto> getBeneficiary(@PathVariable Long customerId) throws CustomerAccountNotFoundException {
+	public ResponseEntity<FavouriteBeneficiariesResponseDto> getBeneficiary(@PathVariable Long customerId)
+			throws CustomerAccountNotFoundException {
 		log.info("Getting beneficiary");
-		
+
 		final String uri = "http://10.117.189.62:8075/mybank/customers/" + customerId + "/beneficiary";
 
 		RestTemplate restTemplate = new RestTemplate();
@@ -48,8 +55,8 @@ public class CustomerController {
 		HttpEntity<String> entity = new HttpEntity<String>("parameters", headers);
 
 		FavouriteBeneficiariesResponseDto resBeneficiariesResponseDto = restTemplate
-				.exchange(uri, HttpMethod.GET, entity, FavouriteBeneficiariesResponseDto.class).getBody();		
-		if (resBeneficiariesResponseDto != null ) {			
+				.exchange(uri, HttpMethod.GET, entity, FavouriteBeneficiariesResponseDto.class).getBody();
+		if (resBeneficiariesResponseDto != null) {
 			return new ResponseEntity<FavouriteBeneficiariesResponseDto>(resBeneficiariesResponseDto, HttpStatus.OK);
 		}
 		return new ResponseEntity<FavouriteBeneficiariesResponseDto>(HttpStatus.NO_CONTENT);

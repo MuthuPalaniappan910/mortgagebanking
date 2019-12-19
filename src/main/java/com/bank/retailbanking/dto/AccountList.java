@@ -14,4 +14,5 @@ public class AccountList {
 	private LocalDate accountOpeningDate;
 
 	private Long customerId;
+	private String accountName;
 }

@@ -27,6 +27,12 @@ public class MortgageAccountController {
 	@Autowired
 	CustomerAccountService customerAccountService;
 
+	/**
+	 * @author Mahesh
+	 * @param customerRequestDto
+	 * @return
+	 * @throws GeneralException
+	 */
 	@PostMapping("/mortgage")
 	public ResponseEntity<Optional<CustomerResponseDto>> createMortgageCustomer(
 			@RequestBody CustomerRequestDto customerRequestDto) throws GeneralException {

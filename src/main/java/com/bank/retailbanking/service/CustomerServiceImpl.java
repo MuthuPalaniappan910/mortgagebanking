@@ -21,6 +21,15 @@ public class CustomerServiceImpl implements CustomerService {
 	@Autowired
 	CustomerRepository customerRepository;
 
+	/**
+	 * 
+	 * @author mahesh 
+	 * This method is used to get the mortgage details of a particular
+	 *         account
+	 * @param customerId
+	 * @return CustomerFavouriteAccountResponse
+	 * 
+	 */
 	@Override
 	public CustomerFavouriteAccountResponse getMortgageDetails(Long customerId)
 			throws CustomerAccountNotFoundException {

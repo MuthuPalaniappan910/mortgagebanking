@@ -30,11 +30,17 @@ public class AdminServiceImpl implements AdminService {
 
 	@Autowired
 	CustomerRepository customerRepository;
-	
+
+	/**
+	 * @author Muthu This method is used to get partial accountnuber
+	 * @param accountNumber
+	 * @return
+	 * @throws NoAccountListException
+	 */
 	public List<AccountList> getAccountList(String accountNumber) throws NoAccountListException {
 		List<CustomerAccountDetail> customerAccountDetail = customerAccountDetailRepository
 				.findAllByAccountNumber(accountNumber);
-		if(customerAccountDetail.isEmpty()) {
+		if (customerAccountDetail.isEmpty()) {
 			throw new NoAccountListException(ApplicationConstants.ACCOUNT_LIST_FAILURE_MESSAGE);
 		}
 		customerAccountDetail = customerAccountDetail.stream().filter(
@@ -45,13 +51,21 @@ public class AdminServiceImpl implements AdminService {
 			AccountList accountList = new AccountList();
 			BeanUtils.copyProperties(customerAccountDetails, accountList);
 			accountList.setCustomerId(customerAccountDetails.getCustomerId().getCustomerId());
+			accountList.setAccountName(customerAccountDetails.getCustomerId().getFirstName().concat(" ")
+					.concat((customerAccountDetails.getCustomerId().getLastName())));
 			accounts.add(accountList);
 
 		});
 		return accounts;
 	}
 
-
+	/**
+	 * @author Bindhu 
+	 * This method is used to get the account details mortgage and
+	 *         savings
+	 * @param accountNumber
+	 * @return
+	 */
 	@Override
 	public ViewAccountResponseDto viewAccountDetails(Long accountNumber) {
 		log.info("Entering into viewAccountDetails method of service");

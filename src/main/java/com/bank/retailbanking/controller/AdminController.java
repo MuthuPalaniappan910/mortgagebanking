@@ -20,15 +20,26 @@ import com.bank.retailbanking.service.AdminService;
 
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * This class is used to perform the operations related to admin
+ * 
+ **/
 @CrossOrigin(allowedHeaders = { "*", "*/" }, origins = { "*", "*/" })
 @RestController
 @RequestMapping("/admin/customers")
 @Slf4j
 public class AdminController {
-	
+
 	@Autowired
 	AdminService adminService;
-	
+
+	/**
+	 * @author Muthu This method is used to get partial accountnuber
+	 * @param accountNumber
+	 * @return AccountSearchResponseDto
+	 * @throws NoAccountListException
+	 */
+
 	@GetMapping("/{accountNumber}")
 	public ResponseEntity<AccountSearchResponseDto> getAccountList(@PathVariable("accountNumber") String accountNumber)
 			throws NoAccountListException {
@@ -46,25 +57,20 @@ public class AdminController {
 		return new ResponseEntity<>(accountSearchResponseDto, HttpStatus.OK);
 	}
 
-	
+	/**
+	 * @author Bindhu This method is used to get the account details mortgage and
+	 *         savings
+	 * @param accountNumber
+	 * @return ViewAccountResponseDto
+	 */
 	@GetMapping("/customer/{accountNumber}")
-	public ResponseEntity<ViewAccountResponseDto> viewAccountDetails(@PathVariable Long accountNumber){
-		log.info("Entering into viewAccountDetails method of controller" );
-		ViewAccountResponseDto viewAccountResponseDto=adminService.viewAccountDetails(accountNumber);
+	public ResponseEntity<ViewAccountResponseDto> viewAccountDetails(@PathVariable Long accountNumber) {
+		log.info("Entering into viewAccountDetails method of controller");
+		ViewAccountResponseDto viewAccountResponseDto = adminService.viewAccountDetails(accountNumber);
 		viewAccountResponseDto.setStatusCode(ApplicationConstants.SUCCESS_CODE);
 		viewAccountResponseDto.setMessage(ApplicationConstants.SUCCESS);
 		return new ResponseEntity<>(viewAccountResponseDto, HttpStatus.OK);
-		
+
 	}
-	
-	
-	
 
 }
-
-
-
-
-
-	
-	
